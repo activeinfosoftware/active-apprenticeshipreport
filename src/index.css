@@ -1,0 +1,146 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --radius: 0.75rem;
+}
+
+html.dark,
+html {
+    color-scheme: dark;
+}
+
+body {
+    margin: 0;
+    font-family: "IBM Plex Sans", sans-serif;
+    background-color: #0b101d;
+    color: #f8fafc;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.font-heading {
+    font-family: "Outfit", sans-serif;
+}
+.font-mono-data {
+    font-family: "JetBrains Mono", monospace;
+}
+
+/* Tailwind design tokens mapped to the dark BI palette */
+@layer base {
+    :root {
+        --background: 222 47% 8%;
+        --foreground: 210 40% 98%;
+        --card: 219 42% 17%;
+        --card-foreground: 210 40% 98%;
+        --popover: 219 42% 17%;
+        --popover-foreground: 210 40% 98%;
+        --primary: 199 89% 60%;
+        --primary-foreground: 222 47% 8%;
+        --secondary: 222 40% 14%;
+        --secondary-foreground: 210 40% 98%;
+        --muted: 222 40% 14%;
+        --muted-foreground: 215 20% 65%;
+        --accent: 217 45% 22%;
+        --accent-foreground: 210 40% 98%;
+        --destructive: 349 89% 60%;
+        --destructive-foreground: 210 40% 98%;
+        --border: 217 33% 24%;
+        --input: 217 33% 24%;
+        --ring: 199 89% 60%;
+        --radius: 0.75rem;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+}
+
+/* Custom thin dark scrollbars */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: #2a3a56;
+    border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #38bdf8;
+}
+
+::selection {
+    background: rgba(56, 189, 248, 0.3);
+    color: #f8fafc;
+}
+
+/* Leaflet dark overrides */
+.leaflet-container {
+    background: #0b101d !important;
+    font-family: "IBM Plex Sans", sans-serif;
+}
+/* Dark-mode the keyless OSM tiles to match the BI theme */
+.leaflet-tile {
+    filter: invert(1) hue-rotate(180deg) brightness(0.92) contrast(0.9) saturate(0.7);
+}
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+    background: #18243e !important;
+    color: #f8fafc !important;
+    border: 1px solid #2a3a56 !important;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5) !important;
+}
+.leaflet-popup-content {
+    margin: 12px 14px !important;
+    font-size: 12px;
+}
+.leaflet-container a.leaflet-popup-close-button {
+    color: #94a3b8 !important;
+}
+.leaflet-bar a {
+    background: #18243e !important;
+    color: #f8fafc !important;
+    border-color: #2a3a56 !important;
+}
+.leaflet-bar a:hover {
+    background: #1e2d4d !important;
+}
+.leaflet-control-attribution {
+    background: rgba(11, 16, 29, 0.7) !important;
+    color: #64748b !important;
+}
+.leaflet-control-attribution a {
+    color: #94a3b8 !important;
+}
+.choro-tip {
+    background: #18243e !important;
+    color: #f8fafc !important;
+    border: 1px solid #2a3a56 !important;
+    border-radius: 8px !important;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5) !important;
+    font-size: 12px !important;
+    padding: 6px 10px !important;
+}
+.choro-tip::before {
+    display: none !important;
+}
+
+@keyframes fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.animate-fade-up {
+    animation: fade-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
