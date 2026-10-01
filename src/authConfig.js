@@ -15,7 +15,7 @@ export const msalConfig = {
     auth: {
         clientId: '776c5dc0-025c-4f0a-b322-e19196c44f6a', // This is the ONLY mandatory field that you need to supply.
         authority: 'https://Activecustomers.ciamlogin.com/', // Replace the placeholder with your tenant subdomain 
-        redirectUri: 'http://localhost:3000/redirect', // Points to window.location.origin. You must register this URI on Microsoft Entra admin center/App Registration.
+        redirectUri: 'https://apprenticeshipsreport.netlify.app', // Points to window.location.origin. You must register this URI on Microsoft Entra admin center/App Registration.
         postLogoutRedirectUri: '/', // Indicates the page to navigate after logout.
         navigateToLoginRequestUrl: false, // If "true", will navigate back to the original request location before processing the auth code response.
     },
