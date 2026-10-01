@@ -1,3 +1,8 @@
+import { MsalProvider, AuthenticatedTemplate, useMsal, UnauthenticatedTemplate } from '@azure/msal-react';
+import { Container} from 'react-bootstrap';
+import { PageLayout } from './components/PageLayout';
+import { loginRequest } from './authConfig';
+
 import React, { useEffect, useState, useCallback } from "react";
 import "@/App.css";
 import "leaflet/dist/leaflet.css";
@@ -25,7 +30,9 @@ const EMPTY = {
   employers_mode: "include", providers_mode: "include", standards_mode: "include", status: null, search: null,
 };
 
-function App() {
+//function App() {
+const ApprenticeReport = () => {
+
   const [filters, setFilters] = useState(EMPTY);
   const [analytics, setAnalytics] = useState(null);
   const [mapData, setMapData] = useState({ points: [], total: 0, returned: 0 });
@@ -157,4 +164,51 @@ function App() {
   );
 }
 
+const MainContent = () => {
+    /**
+     * useMsal is hook that returns the PublicClientApplication instance,
+     * that tells you what msal is currently doing. For more, visit:
+     * https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-react/docs/hooks.md
+     */
+    const { instance } = useMsal();
+    const activeAccount = instance.getActiveAccount();
+
+    const handleRedirect = () => {
+        instance
+            .loginRedirect({
+                ...loginRequest,
+                prompt: 'create',
+            })
+            .catch((error) => console.log(error));
+    };
+    return (
+        <div className="App">
+            <AuthenticatedTemplate>
+                {activeAccount ? (
+                    <Container>
+                       <div className="data-area-div">
+                            <ApprenticeReport />
+                        </div>  
+                    </Container>
+                ) : null}
+            </AuthenticatedTemplate>
+            <UnauthenticatedTemplate>
+                <Button className="signInButton" onClick={handleRedirect} variant="primary">
+                    Sign In
+                </Button>
+            </UnauthenticatedTemplate>
+        </div>
+    );
+};
+
+
+const App = ({ instance }) => {
+    return (
+        <MsalProvider instance={instance}>
+            <PageLayout>
+                <MainContent />
+            </PageLayout>
+        </MsalProvider>
+    );
+};
 export default App;

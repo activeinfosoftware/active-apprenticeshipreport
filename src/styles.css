@@ -1,0 +1,24 @@
+@import "tailwindcss" source("../");
+
+@theme {
+  --color-navy-900: #0e1e25;
+  --color-navy-800: #141f2b;
+  --color-navy-700: #1a2632;
+  --color-teal-500: #32e6e2;
+  --color-teal-400: #5cead8;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-red-400: #f87171;
+}
+
+body {
+  @apply m-0 bg-navy-900 text-white antialiased;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Helvetica Neue", Arial, sans-serif;
+}
+
+@layer base {
+  a {
+    @apply text-teal-400 hover:text-teal-500 transition-colors;
+  }
+}
