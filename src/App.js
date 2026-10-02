@@ -79,7 +79,7 @@ const ApprenticeReport = () => {
               <Database className="h-3 w-3 text-[#10B981]" />
               {analytics?.kpis?.total_vacancies?.toLocaleString() ?? "…"} records
             </span>
-            <SyncButton onSynced={reloadAll} />
+          {/*   <SyncButton onSynced={reloadAll}  */}
             {/* Mobile filter trigger */}
             <Sheet>
               <SheetTrigger asChild>
