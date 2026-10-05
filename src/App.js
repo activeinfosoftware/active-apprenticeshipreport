@@ -70,7 +70,7 @@ const ApprenticeReport = () => {
                 UK Apprenticeships Analytics
               </h1>
               <p className="hidden text-[11px] text-slate-500 sm:block">
-                Live vacancy intelligence · sourced from Azure MySQL
+                Live vacancy intelligence
               </p>
             </div>
           </div>

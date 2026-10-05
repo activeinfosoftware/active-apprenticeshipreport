@@ -14,8 +14,10 @@ export const PageLayout = (props) => {
             <AuthenticatedTemplate>
                 <footer>
                     <center>
-                        Footer Message
-                    </center>
+                        <span  className="font-mono-data text-[11px] text-slate-500">
+                            Contains public sector information licensed under the Open Government Licence v3.0        
+                        </span>
+                      </center>
                 </footer>
             </AuthenticatedTemplate>
         </>
