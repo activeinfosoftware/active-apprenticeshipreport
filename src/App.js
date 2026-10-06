@@ -183,7 +183,7 @@ const MainContent = () => {
     };
     return (
         <div className="App">
-            <AuthenticatedTemplate>
+            {/* <AuthenticatedTemplate>
                 {activeAccount ? (
                     <Container>
                        <div className="data-area-div">
@@ -196,8 +196,18 @@ const MainContent = () => {
                 <Button className="signInButton" onClick={handleRedirect} variant="primary">
                     Sign In
                 </Button>
-            </UnauthenticatedTemplate>
+            </UnauthenticatedTemplate> */}
+            <MsalAuthenticationTemplate interactionType={InteractionType.Redirect}>
+                {activeAccount ? (
+                    <Container>
+                       <div className="data-area-div">
+                            <ApprenticeReport />
+                        </div>  
+                    </Container>
+                ) : null}
+            </MsalAuthenticationTemplate>
         </div>
+     
     );
 };
 
