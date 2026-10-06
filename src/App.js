@@ -1,7 +1,8 @@
-import { MsalProvider, AuthenticatedTemplate, useMsal, UnauthenticatedTemplate } from '@azure/msal-react';
+import { MsalProvider, useMsalAuthentication , MsalAuthenticationTemplate  ,AuthenticatedTemplate, useMsal, UnauthenticatedTemplate } from '@azure/msal-react';
 import { Container} from 'react-bootstrap';
 import { PageLayout } from './components/PageLayout';
 import { loginRequest } from './authConfig';
+import { InteractionType } from "@azure/msal-browser";
 
 import React, { useEffect, useState, useCallback } from "react";
 import "@/App.css";
@@ -170,8 +171,38 @@ const MainContent = () => {
      * that tells you what msal is currently doing. For more, visit:
      * https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-react/docs/hooks.md
      */
-    const { instance } = useMsal();
-    const activeAccount = instance.getActiveAccount();
+    // const { instance } = useMsal();
+    // const activeAccount = instance.getActiveAccount();
+
+     const { error } = useMsalAuthentication(InteractionType.Redirect);
+  
+  // 2. Monitor the active authentication state
+  const { inProgress, accounts } = useMsal();
+
+  // 3. Render a loading state while authentication is in progress
+  const isLoading = 
+    inProgress === InteractionStatus.Login || 
+    inProgress === InteractionStatus.HandleRedirect;
+
+  if (isLoading) {
+    return <div>Authenticating, please wait...</div>;
+  }
+
+  if (error) {
+    return <div>An error occurred: {error.message}</div>;
+  }
+
+  // 4. Ensure we have an active account before showing protected content
+  if (accounts.length > 0) {
+    return (
+      <div>
+        <h3>Welcome, {accounts[0].username}!</h3>
+        <p>This content is fully protected and secured by MSAL.</p>
+      </div>
+    );
+  }
+
+  return null;
 
     const handleRedirect = () => {
         instance
@@ -181,34 +212,36 @@ const MainContent = () => {
             })
             .catch((error) => console.log(error));
     };
-    return (
-        <div className="App">
-            {/* <AuthenticatedTemplate>
-                {activeAccount ? (
-                    <Container>
-                       <div className="data-area-div">
-                            <ApprenticeReport />
-                        </div>  
-                    </Container>
-                ) : null}
-            </AuthenticatedTemplate>
-            <UnauthenticatedTemplate>
-                <Button className="signInButton" onClick={handleRedirect} variant="primary">
-                    Sign In
-                </Button>
-            </UnauthenticatedTemplate> */}
-            <MsalAuthenticationTemplate interactionType={InteractionType.Redirect}>
-                {activeAccount ? (
-                    <Container>
-                       <div className="data-area-div">
-                            <ApprenticeReport />
-                        </div>  
-                    </Container>
-                ) : null}
-            </MsalAuthenticationTemplate>
-        </div>
+
+    // return (
+       
+    //         {/* <AuthenticatedTemplate>
+    //             {activeAccount ? (
+    //                 <Container>
+    //                    <div className="data-area-div">
+    //                         <ApprenticeReport />
+    //                     </div>  
+    //                 </Container>
+    //             ) : null}
+    //         </AuthenticatedTemplate>
+    //         <UnauthenticatedTemplate>
+    //             <Button className="signInButton" onClick={handleRedirect} variant="primary">
+    //                 Sign In
+    //             </Button>
+    //         </UnauthenticatedTemplate> */}
+           
+    //        <MsalAuthenticationTemplate interactionType={InteractionType.Redirect}>
+    //             {activeAccount ? (
+    //                 <Container>
+    //                    <div className="data-area-div">
+    //                         <ApprenticeReport />
+    //                     </div>  
+    //                 </Container>
+    //             ) : null}
+    //         </MsalAuthenticationTemplate>
+        
      
-    );
+    // );
 };
 
 
