@@ -184,7 +184,7 @@ export const MainContent = () => {
           login(InteractionType.Redirect, request);
           console.log(error)
         }
-    }, [error]);
+    }, [login,error]);
 
 
     return (
