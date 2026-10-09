@@ -66,17 +66,19 @@ export const FilterSidebar = ({ filters, setFilters, resultCount }) => {
   useEffect(() => {
     fetchOptions().then(setOptions);
     fetchItl(1).then(setItl1List);
+    fetchItl(2).then(setItl2List);
+    fetchItl(3).then(setItl3List);
   }, []);
 
-  useEffect(() => {
-    if (filters.itl1?.length) fetchItl(2, filters.itl1).then(setItl2List);
-    else setItl2List([]);
-  }, [filters.itl1]);
+  // useEffect(() => {
+  //   if (filters.itl1?.length) fetchItl(2, filters.itl1).then(setItl2List);
+  //   else setItl2List([]);
+  // }, [filters.itl1]);
 
-  useEffect(() => {
-    if (filters.itl2?.length) fetchItl(3, filters.itl1, filters.itl2).then(setItl3List);
-    else setItl3List([]);
-  }, [filters.itl1, filters.itl2]);
+  // useEffect(() => {
+  //   if (filters.itl2?.length) fetchItl(3, filters.itl1, filters.itl2).then(setItl3List);
+  //   else setItl3List([]);
+  // }, [filters.itl1, filters.itl2]);
 
   const toggleArray = (key, val) => {
     const arr = filters[key] || [];
