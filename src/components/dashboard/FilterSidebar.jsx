@@ -176,9 +176,9 @@ export const FilterSidebar = ({ filters, setFilters, resultCount }) => {
               {[
                 { lvl: "itl1", label: "ITL1 — Region", list: itl1List, disabled: false,
                   placeholder: "Search regions…" },
-                { lvl: "itl2", label: "ITL2 — Sub-region", list: itl2List, disabled: !filters.itl1?.length,
+                { lvl: "itl2", label: "ITL2 — Sub-region", list: itl2List, disabled:false, //!filters.itl1?.length,
                   placeholder: "Search sub-regions…" },
-                { lvl: "itl3", label: "ITL3 — Local area", list: itl3List, disabled: !filters.itl2?.length,
+                { lvl: "itl3", label: "ITL3 — Local area", list: itl3List, disabled: false, //!filters.itl2?.length,
                   placeholder: "Search local areas…" },
               ].map(({ lvl, label, list, disabled, placeholder }) => (
                 <div key={lvl}>
