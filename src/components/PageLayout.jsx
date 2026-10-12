@@ -16,7 +16,10 @@ export const PageLayout = (props) => {
                     <center>
                         <span  className="font-mono-data text-[11px] text-slate-500">
                             Contains public sector information licensed under the Open Government Licence v3.0        
-                        </span>
+                        </span><br />
+                          <a href="https://www.activeinformatics.com/apprenticeship-insights/" target="_blank" rel="noopener noreferrer" className="font-mono-data text-[11px] text-slate-500 hover:underline">
+                            By accessing this system, you agree to be bound by the Terms and Conditions available here
+                        </a> 
                       </center>
                 </footer>
             </AuthenticatedTemplate>

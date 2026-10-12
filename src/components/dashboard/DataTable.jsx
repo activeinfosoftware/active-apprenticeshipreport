@@ -23,6 +23,7 @@ const COLS = [
   { key: "itl1_name", label: "Region", sortable: false },
   { key: "wage_max", label: "Wage/hr", sortable: true },
   { key: "posted_date", label: "Posted", sortable: true },
+ { key: "url", label: "Advert", sortable: false },
 ];
 
 export const DataTable = ({ filters }) => {
@@ -143,7 +144,13 @@ export const DataTable = ({ filters }) => {
                   {r.wage_max ? `£${r.wage_max.toFixed(2)}` : "—"}
                 </TableCell>
                 <TableCell className="font-mono-data text-xs text-slate-400">{r.posted_date}</TableCell>
-              </TableRow>
+                <TableCell className="font-mono-data text-xs text-slate-400">
+                   {r.url ?  <a href={r.url} target="_blank" rel="noopener noreferrer" className="text-[#38BDF8] hover:underline">
+                    View 
+                  </a> : <div></div>}
+                 
+                </TableCell>
+             </TableRow>
             ))}
             {!loading && data.rows.length === 0 && (
               <TableRow>
