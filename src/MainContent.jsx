@@ -67,7 +67,7 @@ const ApprenticeReport = () => {
             </div>
             <div>
               <h1 className="font-heading text-base font-bold tracking-tight text-white sm:text-lg">
-                UK Apprenticeships Analytics
+                Apprenticeship Insights'
               </h1>
               <p className="hidden text-[11px] text-slate-500 sm:block">
                 Live vacancy intelligence
