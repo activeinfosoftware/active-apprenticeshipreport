@@ -26,7 +26,7 @@ const COLS = [
  { key: "url", label: "Advert", sortable: false },
 ];
 
-export const DataTable = ({ filters }) => {
+export const DataTable = ({ filters,username }) => {
   const [data, setData] = useState({ rows: [], total: 0, page: 1, pages: 1 });
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
@@ -37,15 +37,17 @@ export const DataTable = ({ filters }) => {
 
   useEffect(() => setPage(1), [filters]);
 
+
+
   useEffect(() => {
     const t = setTimeout(() => {
       setLoading(true);
-      fetchTable({ ...filters, search: search || filters.search }, page, 25, sortBy, sortDir)
+      fetchTable({ ...filters, search: search || filters.search }, username,page, 25, sortBy, sortDir)
         .then(setData)
         .finally(() => setLoading(false));
     }, 250);
     return () => clearTimeout(t);
-  }, [filters, page, search, sortBy, sortDir]);
+  }, [filters, username,page, search, sortBy, sortDir]);
 
   const sort = (key) => {
     if (sortBy === key) setSortDir(sortDir === 1 ? -1 : 1);
