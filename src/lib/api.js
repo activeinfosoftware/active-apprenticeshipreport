@@ -40,10 +40,10 @@ export const exportGrowthCsv = async (filters, params) => {
 };
 export const fetchMap = async (filters) => (await http.post("/map", filters)).data;
 
-// export const fetchTable = async (filters, username, page, pageSize, sortBy, sortDir) =>
-//   (await http.post("/table", filters, { params: { username,page, page_size: pageSize, sort_by: sortBy, sort_dir: sortDir } })).data;
-export const fetchTable = async (filters,  page, pageSize, sortBy, sortDir) =>
-  (await http.post("/table", filters, { params: {page, page_size: pageSize, sort_by: sortBy, sort_dir: sortDir } })).data;
+export const fetchTable = async (filters, username, page, pageSize, sortBy, sortDir) =>
+  (await http.post("/table", filters, { params: { username,page, page_size: pageSize, sort_by: sortBy, sort_dir: sortDir } })).data;
+// export const fetchTable = async (filters,  page, pageSize, sortBy, sortDir) =>
+//   (await http.post("/table", filters, { params: {page, page_size: pageSize, sort_by: sortBy, sort_dir: sortDir } })).data;
 export const runSync = async () => (await http.post("/admin/sync")).data;
 
 export const exportCsv = async (filters) => {

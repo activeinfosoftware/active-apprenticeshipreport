@@ -43,8 +43,8 @@ const COLS = [
   useEffect(() => {
     const t = setTimeout(() => {
       setLoading(true);
-      // fetchTable({ ...filters, search: search || filters.search }, username,page, 25, sortBy, sortDir)
-      fetchTable({ ...filters, search: search || filters.search }, page, 25, sortBy, sortDir)
+       fetchTable({ ...filters, search: search || filters.search }, username,page, 25, sortBy, sortDir)
+      //fetchTable({ ...filters, search: search || filters.search }, page, 25, sortBy, sortDir)
         .then(setData)
         .finally(() => setLoading(false));
     }, 250);
