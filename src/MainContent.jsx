@@ -181,7 +181,7 @@ export const MainContent = () => {
     const request = {
         scopes: ["User.Read"]
     }
-    const { login, result, error } = useMsalAuthentication(InteractionType.Silent, request);
+    const { login, accounts, error } = useMsalAuthentication(InteractionType.Silent, request);
 
     // const { accounts } = useMsal();
 
@@ -198,6 +198,7 @@ export const MainContent = () => {
            
             <AuthenticatedTemplate>
                   <Container>
+                    <div>{accounts[0]?.username}</div>
                        <div className="data-area-div">
                         {/* <div>Test  {accounts[0]?.username}</div> */}
                             <ApprenticeReport username="Kevin Russell" />
