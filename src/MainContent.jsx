@@ -178,19 +178,18 @@ const ApprenticeReport = ({ username }) => {
  * https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-react/docs/getting-started.md
  */
 export const MainContent = () => {
-    const request = {
-        scopes: ["User.Read"]
-    }
-    const { login, accounts, error } = useMsalAuthentication(InteractionType.Silent, request);
+   
+   // const { login,  error } = useMsalAuthentication(InteractionType.Silent, request);
+    const { login,  error } = useMsalAuthentication(InteractionType.Silent, {    scopes: ["user.read"]  });
 
-    // const { accounts } = useMsal();
+     const { accounts } = useMsal();
 
     useEffect(() => {
         if (error) {
-          login(InteractionType.Redirect, request);
+          login(InteractionType.Redirect, {    scopes: ["user.read"]  });
           console.log(error)
         }
-    }, [login,request,error]);
+    }, [login,error]);
 
 
     return (
@@ -198,7 +197,8 @@ export const MainContent = () => {
            
             <AuthenticatedTemplate>
                   <Container>
-                    <div>{accounts[0]?.username}</div>
+                        {accounts ? <div>Welcome {accounts[0]?.username}</div> : <div>Loading user info...</div>}
+                   
                        <div className="data-area-div">
                         {/* <div>Test  {accounts[0]?.username}</div> */}
                             <ApprenticeReport username="Kevin Russell" />
