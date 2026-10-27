@@ -180,9 +180,9 @@ const ApprenticeReport = ({ username }) => {
 export const MainContent = () => {
    
    // const { login,  error } = useMsalAuthentication(InteractionType.Silent, request);
-    const { login,  error } = useMsalAuthentication(InteractionType.Silent, {    scopes: ["user.read"]  });
+    const { login, accounts, error } = useMsalAuthentication(InteractionType.Silent, {    scopes: ["user.read"]  });
 
-     const { accounts } = useMsal();
+  
 
     useEffect(() => {
         if (error) {
