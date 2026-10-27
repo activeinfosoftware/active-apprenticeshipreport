@@ -16,11 +16,15 @@ export const fetchItl = async (level, itl1 = [], itl2 = []) => {
 };
 export const fetchValues = async (field, q, limit = 50) =>
   (await http.get("/filters/values", { params: { field, q: q || undefined, limit } })).data;
-export const fetchCompare = async (dimension, names) =>
-  (await http.post("/compare", { dimension, names })).data;
+
+export const fetchCompare = async (dimension, names, username) =>
+  (await http.post("/compare", { dimension, names }, { params: { username } })).data;
+
 export const fetchOverlapLeaderboard = async (dimension, name, top = 15) =>
   (await http.post("/overlap-leaderboard", { dimension, name, top })).data;
-export const fetchAnalytics = async (filters) => (await http.post("/analytics", filters)).data;
+
+export const fetchAnalytics = async (filters, username) => (await http.post("/analytics", filters, { params: { username } })).data;
+
 export const fetchFastestGrowth = async (filters, params) =>
   (await http.post("/fastest-growth", filters, { params })).data;
 export const fetchGrowthDrivers = async (payload) =>
@@ -38,16 +42,17 @@ export const exportGrowthCsv = async (filters, params) => {
   a.remove();
   window.URL.revokeObjectURL(url);
 };
-export const fetchMap = async (filters) => (await http.post("/map", filters)).data;
+export const fetchMap = async (filters, username) => (await http.post("/map", filters, { params: { username } })).data;
 
-export const fetchTable = async (filters, username, page, pageSize, sortBy, sortDir) =>
+export const fetchTable = async (filtersc, page, pageSize, sortBy, sortDir) =>
   (await http.post("/table", filters, { params: { username,page, page_size: pageSize, sort_by: sortBy, sort_dir: sortDir } })).data;
 // export const fetchTable = async (filters,  page, pageSize, sortBy, sortDir) =>
 //   (await http.post("/table", filters, { params: {page, page_size: pageSize, sort_by: sortBy, sort_dir: sortDir } })).data;
+
 export const runSync = async () => (await http.post("/admin/sync")).data;
 
-export const exportCsv = async (filters) => {
-  const res = await http.post("/export", filters, { responseType: "blob" });
+export const exportCsv = async (filters, username) => {
+  const res = await http.post("/export", filters, username,{ responseType: "blob" });
   const url = window.URL.createObjectURL(new Blob([res.data], { type: "text/csv" }));
   const a = document.createElement("a");
   a.href = url;

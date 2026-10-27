@@ -63,7 +63,7 @@ const Chip = ({ list }) => (
   </div>
 );
 
-export const ComparePanel = () => {
+export const ComparePanel = ({ username }) => {
   const [dimension, setDimension] = useState("provider");
   const [a, setA] = useState(null);
   const [b, setB] = useState(null);
@@ -81,7 +81,7 @@ export const ComparePanel = () => {
     const names = [a, b].filter(Boolean);
     if (names.length === 0) { setData(null); return; }
     setLoading(true);
-    fetchCompare(dimension, names).then(setData).finally(() => setLoading(false));
+    fetchCompare(dimension, names,username).then(setData).finally(() => setLoading(false));
   }, [dimension, a, b]);
 
   // Similarity leaderboard for the chosen A (providers/employers only)

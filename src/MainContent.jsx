@@ -42,12 +42,12 @@ const ApprenticeReport = ({ username }) => {
 
   useEffect(() => {
     setLoading(true);
-    fetchAnalytics(filters).then(setAnalytics).finally(() => setLoading(false));
-  }, [filters]);
+    fetchAnalytics(filters, username).then(setAnalytics).finally(() => setLoading(false));
+  }, [filters, username]);
 
   useEffect(() => {
     setMapLoading(true);
-    fetchMap(filters).then(setMapData).finally(() => setMapLoading(false));
+    fetchMap(filters,username).then(setMapData).finally(() => setMapLoading(false));
   }, [filters]);
 
   const sidebar = (
@@ -140,7 +140,7 @@ const ApprenticeReport = ({ username }) => {
             </TabsContent>
 
             <TabsContent value="compare" className="mt-6">
-              <ComparePanel />
+              <ComparePanel username={username}/>
             </TabsContent>
 
             <TabsContent value="map" className="mt-6">
@@ -152,6 +152,7 @@ const ApprenticeReport = ({ username }) => {
                 choropleth={analytics?.choropleth || []}
                 filters={filters}
                 setFilters={setFilters}
+                username={username}
               />
             </TabsContent>
 
@@ -197,12 +198,15 @@ export const MainContent = () => {
            
             <AuthenticatedTemplate>
                   <Container>
-                        {accounts ? <div>Welcome {accounts[0]?.username}</div> : <div>Loading user info...</div>}
+                        {accounts ? 
+                            <div className="data-area-div">
+                                <ApprenticeReport username={accounts[0]?.username} />
+                            </div>  
+                          : 
+                            <div>Loading user info...</div>
+                        }
                    
-                       <div className="data-area-div">
-                        {/* <div>Test  {accounts[0]?.username}</div> */}
-                            <ApprenticeReport username="Kevin Russell" />
-                        </div>  
+                        
                     </Container>
             </AuthenticatedTemplate>
              <UnauthenticatedTemplate>
