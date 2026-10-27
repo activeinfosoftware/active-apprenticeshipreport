@@ -156,9 +156,9 @@ const ApprenticeReport = ({ username }) => {
             </TabsContent>
 
             <TabsContent value="table" className="mt-6">
-              <div>Just text {username}</div>
+              {/* <div>Just text {username}</div> */}
               {/* <DataTable filters={filters} username={accounts[0]?.username} /> */}
-               {/* <DataTable filters={filters}  /> */}
+               <DataTable filters={filters} username={username} />
            </TabsContent>
           </Tabs>
         </main>

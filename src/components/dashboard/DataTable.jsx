@@ -26,8 +26,8 @@ const COLS = [
  { key: "url", label: "Advert", sortable: false },
 ];
 
-export const DataTable = ({ filters }) => {
-  // export const DataTable = ({ filters,username }) => {
+//export const DataTable = ({ filters }) => {
+  export const DataTable = ({ filters,username }) => {
   const [data, setData] = useState({ rows: [], total: 0, page: 1, pages: 1 });
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
