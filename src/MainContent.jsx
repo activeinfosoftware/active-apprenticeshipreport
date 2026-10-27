@@ -31,8 +31,8 @@ const EMPTY = {
 };
 
 //function App() {
-const ApprenticeReport = ({ username }) => {
-
+//const ApprenticeReport = ({ username }) => {
+const ApprenticeReport = () => {
   const [filters, setFilters] = useState(EMPTY);
   const [analytics, setAnalytics] = useState(null);
   const [mapData, setMapData] = useState({ points: [], total: 0, returned: 0 });
@@ -156,7 +156,7 @@ const ApprenticeReport = ({ username }) => {
             </TabsContent>
 
             <TabsContent value="table" className="mt-6">
-              <div>Just text {username}</div>
+              <div>Just text </div>
               {/* <DataTable filters={filters} username={accounts[0]?.username} /> */}
                {/* <DataTable filters={filters}  /> */}
            </TabsContent>
@@ -199,7 +199,8 @@ export const MainContent = () => {
             <AuthenticatedTemplate>
                   <Container>
                        <div className="data-area-div">
-                            <ApprenticeReport username={accounts[0]?.username} />
+                        <div>Test  {accounts[0]?.username}</div>
+                            <ApprenticeReport />
                         </div>  
                     </Container>
             </AuthenticatedTemplate>
