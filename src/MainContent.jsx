@@ -31,7 +31,7 @@ const EMPTY = {
 };
 
 //function App() {
-const ApprenticeReport = () => {
+const ApprenticeReport = ({ username }) => {
 
   const [filters, setFilters] = useState(EMPTY);
   const [analytics, setAnalytics] = useState(null);
@@ -56,7 +56,7 @@ const ApprenticeReport = () => {
 
   const reloadAll = useCallback(() => setFilters((f) => ({ ...f })), []);
 
-  //  const { accounts } = useMsal();
+
 
   return (
     <div className="min-h-screen bg-[#0B101D] text-slate-100">
@@ -156,7 +156,7 @@ const ApprenticeReport = () => {
             </TabsContent>
 
             <TabsContent value="table" className="mt-6">
-              <div>Just text</div>
+              <div>Just text {username}</div>
               {/* <DataTable filters={filters} username={accounts[0]?.username} /> */}
                {/* <DataTable filters={filters}  /> */}
            </TabsContent>
@@ -183,6 +183,8 @@ export const MainContent = () => {
     }
     const { login, result, error } = useMsalAuthentication(InteractionType.Silent, request);
 
+    const { accounts } = useMsal();
+
     useEffect(() => {
         if (error) {
           login(InteractionType.Redirect, request);
@@ -197,7 +199,7 @@ export const MainContent = () => {
             <AuthenticatedTemplate>
                   <Container>
                        <div className="data-area-div">
-                            <ApprenticeReport />
+                            <ApprenticeReport username={accounts[0]?.username} />
                         </div>  
                     </Container>
             </AuthenticatedTemplate>
