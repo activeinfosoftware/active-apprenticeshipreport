@@ -1,4 +1,4 @@
-import { useMsalAuthentication, AuthenticatedTemplate, UnauthenticatedTemplate } from '@azure/msal-react';
+import {  useMsal, AuthenticatedTemplate, UnauthenticatedTemplate } from '@azure/msal-react';
 
 import { InteractionType } from "@azure/msal-browser";
 import { Container} from 'react-bootstrap';
@@ -180,9 +180,9 @@ const ApprenticeReport = ({ username }) => {
 export const MainContent = () => {
    
    // const { login,  error } = useMsalAuthentication(InteractionType.Silent, request);
-    const { login, accounts, error } = useMsalAuthentication(InteractionType.Silent, {    scopes: ["user.read"]  });
+    const { login,  error } = useMsalAuthentication(InteractionType.Silent, {    scopes: ["user.read"]  });
 
-  
+    const {  accounts } = useMsal();
 
     useEffect(() => {
         if (error) {
