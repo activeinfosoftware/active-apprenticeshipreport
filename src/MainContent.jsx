@@ -56,7 +56,7 @@ const ApprenticeReport = () => {
 
   const reloadAll = useCallback(() => setFilters((f) => ({ ...f })), []);
 
-  // const { accounts } = useMsal();
+   const { accounts } = useMsal();
 
   return (
     <div className="min-h-screen bg-[#0B101D] text-slate-100">
@@ -156,8 +156,9 @@ const ApprenticeReport = () => {
             </TabsContent>
 
             <TabsContent value="table" className="mt-6">
+              <div>{accounts[0]?.username}</div>
               {/* <DataTable filters={filters} username={accounts[0]?.username} /> */}
-               <DataTable filters={filters}  />
+               {/* <DataTable filters={filters}  /> */}
            </TabsContent>
           </Tabs>
         </main>
