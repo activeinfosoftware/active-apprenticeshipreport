@@ -52,7 +52,7 @@ export const fetchTable = async (filters, username,page, pageSize, sortBy, sortD
 export const runSync = async () => (await http.post("/admin/sync")).data;
 
 export const exportCsv = async (filters, username) => {
-  const res = await http.post("/export", filters, username,{ responseType: "blob" });
+  const res = await http.post("/export", filters, { params: { username }, responseType: "blob" });
   const url = window.URL.createObjectURL(new Blob([res.data], { type: "text/csv" }));
   const a = document.createElement("a");
   a.href = url;

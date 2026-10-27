@@ -59,7 +59,7 @@ const COLS = [
   const handleExport = async () => {
     setExporting(true);
     try {
-      await exportCsv({ ...filters, username,search: search || filters.search });
+      await exportCsv({ ...filters,search: search || filters.search }, username);
       toast.success(`Exported ${data.total.toLocaleString()} vacancies to CSV`);
     } catch (e) {
       toast.error("Export failed. Please try again.");
