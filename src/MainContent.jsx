@@ -1,4 +1,4 @@
-import {  useMsal, AuthenticatedTemplate, UnauthenticatedTemplate } from '@azure/msal-react';
+import {  useMsal, useMsalAuthentication,AuthenticatedTemplate, UnauthenticatedTemplate } from '@azure/msal-react';
 
 import { InteractionType } from "@azure/msal-browser";
 import { Container} from 'react-bootstrap';
